@@ -1,0 +1,8 @@
+- intro su xgboost
+- how to reduce complexity, trees depth
+- xgboost su dataset ridotto
+- xgboost vs altri modelli
+	- troviamo i parametri migliori per tutti i modelli
+	- con questi parametri ci sono dei problemi? complessità etc
+	- faccio tuning sui parametri, vedo che è meglio e modello più easy
+	- parlo del tuning e dei parametri
