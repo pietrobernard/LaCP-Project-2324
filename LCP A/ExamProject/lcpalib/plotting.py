@@ -138,9 +138,14 @@ def MuonPlotsCOMPads(ax, energies_df,
                  legend_size=10,
                  histtype=None,
                  legend=False,
+                 legend_frame=False,
                  legend_loc=0,
+                 legend_bg=None,
+                 legend_a=1,
                  plotlabel="",
-                 errlabel=""
+                 errlabel="",
+                 plot_color=None,
+                 err_color=None
                  ):
     # intializing locators
     minor_locator_x = AutoMinorLocator(n_min_loc)
@@ -162,11 +167,11 @@ def MuonPlotsCOMPads(ax, energies_df,
         counts, edges = np.histogram(energies_df[plot_features[p]], bins=nbins, range=xrange)
         errs = np.sqrt(counts)/((edges[1]-edges[0])*np.sum(counts))
         if histtype is not None:
-            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,histtype=histtype,alpha=alpha,label=plotlabel)
+            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,histtype=histtype,alpha=alpha,label=plotlabel,color=plot_color)
         else:
-            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,label=plotlabel)
+            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,label=plotlabel,color=plot_color)
         centers = 0.5*(edges[1:]+edges[:-1])
-        ax[p].errorbar(centers, counts, yerr=errs, fmt='o', capsize=2, markersize=2.5,label=errlabel)
+        ax[p].errorbar(centers, counts, yerr=errs, fmt='o', capsize=2, markersize=2.5,label=errlabel, color=err_color)
 
         # setting options
         ax[p].set_title(title,fontsize=title_size, loc='right')
@@ -181,7 +186,7 @@ def MuonPlotsCOMPads(ax, energies_df,
 
         # legend
         if legend:
-            ax[p].legend(loc=legend_loc, fontsize=legend_size, frameon=False)
+            ax[p].legend(loc=legend_loc, fontsize=legend_size, frameon=legend_frame, facecolor=legend_bg, framealpha=legend_a)
 
 
 
@@ -203,10 +208,16 @@ def MuonPlotsLABPads(ax, energies_df,
                  histtype=None,
                  legend=False,
                  legend_loc=0,
+                 legend_bg=None,
+                 legend_frame=False,
+                 legend_a=1,
                  plotlabel="",
                  errlabel="",
                  minloc_x_z=8,
-                 maxloc_x_z=5
+                 maxloc_x_z=5,
+                 plot_color=None,
+                 err_color=None,
+
                  ):
     # initializing
     xrange = None
@@ -242,11 +253,11 @@ def MuonPlotsLABPads(ax, energies_df,
         errs = np.sqrt(counts)/((edges[1]-edges[0])*np.sum(counts))
         # making the histogram
         if histtype is not None:
-            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,histtype=histtype,label=plotlabel)
+            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,histtype=histtype,label=plotlabel,color=plot_color)
         else:
-            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,label=plotlabel)
+            counts, edges, _ = ax[p].hist(energies_df[plot_features[p]],bins=nbins,range=xrange,density=True,alpha=alpha,label=plotlabel,color=plot_color)
         centers = 0.5*(edges[1:]+edges[:-1])
-        ax[p].errorbar(centers, counts, yerr=errs, fmt='o', capsize=2, markersize=2.5, label=errlabel)
+        ax[p].errorbar(centers, counts, yerr=errs, fmt='o', capsize=2, markersize=2.5, label=errlabel, color=err_color)
 
         # setting options
         ax[p].set_title(title,fontsize=title_size, loc='right')
@@ -261,7 +272,7 @@ def MuonPlotsLABPads(ax, energies_df,
 
         # legend
         if legend:
-            ax[p].legend(loc=legend_loc, fontsize=legend_size, frameon=False)
+            ax[p].legend(loc=legend_loc, fontsize=legend_size, frameon=legend_frame, facecolor=legend_bg, framealpha=legend_a)
 
 
 def MuonTracks(ax, energies_df, scaled_energies,
