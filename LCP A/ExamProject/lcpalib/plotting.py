@@ -25,7 +25,8 @@ def EnergyPlotPad(data, nbins, datarange, ax,
                   E_peak=0,
                   x_or_y_sci='x',
                   nomenergy_label="",
-                  threnergy_label=""
+                  threnergy_label="",
+                  title_loc='left'
                   ):
     # locators for x and y axes
     minor_locator_x = AutoMinorLocator(minloc_x)
@@ -52,7 +53,7 @@ def EnergyPlotPad(data, nbins, datarange, ax,
     # setting labels and title
     ax.set_xlabel(xlabel, fontsize=xaxislabel_size,loc='right')
     ax.set_ylabel(ylabel, fontsize=yaxislabel_size,loc='top')
-    ax.set_title(figtitle, fontsize=title_size, style='italic', loc='left')
+    ax.set_title(figtitle, fontsize=title_size, style='italic', loc=title_loc)
 
     # zoom-in region
     axins = ax.inset_axes([0.08,0.62,0.3,0.3])
@@ -327,7 +328,8 @@ def EnergiesBeforeAfter(ax, energies, energies_reduced, energies_range, nbins,
                         E_lab=0,
                         yaxis_label="",
                         alpha=0.7,
-                        z_depth=3.0
+                        z_depth=3.0,
+                        figtitle="Positron beam energy - LAB frame"
                         ):
     
     # plotting the distribution in z=0 cm
@@ -364,7 +366,7 @@ def EnergiesBeforeAfter(ax, energies, energies_reduced, energies_range, nbins,
     ax.ticklabel_format(axis='y', style='scientific', useMathText=True, scilimits=(0.,0.01))
     ax.tick_params(axis='both', which='major', labelsize=12, length=10, direction='in', top=True, right=True)
     ax.tick_params(axis='both', which='minor', labelsize=8, length=5, direction='in', top=True, right=True)
-    ax.set_title("Positron beam energy - LAB frame",fontsize=15, loc='right')
+    ax.set_title(figtitle,fontsize=15, loc='right')
     ax.set_ylabel(yaxis_label,fontsize=12, loc='top')
     ax.set_xlabel("Beam energy (GeV)",fontsize=12, loc='right')
 

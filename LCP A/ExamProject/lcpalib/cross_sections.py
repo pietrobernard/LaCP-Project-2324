@@ -39,3 +39,5 @@ class CS(object):
         l2 = 1+((4*self.m_mu**2)/s)
         l3 = 4/3*(1+((2*self.m_mu**2)/s))
         return -1.0*l0*(l1*cos_theta**3 + l2*cos_theta - l3)
+
+
