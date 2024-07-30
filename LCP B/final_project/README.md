@@ -1,5 +1,15 @@
+# Notes on ROOT and Analysis workflow
+## Accessing CloudVeneto
+So, to access CloudVeneto please look at the [dedicated README](https://github.com/pietrobernard/LaCP-Project-2324/tree/main/LCP%20B/final_project/scripts)
+
 ## ROOT files
 The data analysis usually runs in multiple stages. The first stage will apply cuts and selection rules on the data, in order to select events according to the process we want to investigate. This will produce smaller ROOT files (ideally one ROOT file per process) that can then be converted into pure-python objects to be fed to more advanced analysis tools, machine learning algorithms, etc that will constitute the following stages of the analysis.
+
+### Data Location
+All of our data resides on the virtual disk that is mounted at the following path in our server:
+```bash
+/mnt/TTV
+```
 
 ### Data Structure
 Think of a ROOT file as a computer directory. You can store whatever you like inside of it: datasets, histograms, plots and generic objects (like you do in Python when you save objects to disk so that you can reload them later, the principle is exactly the same). Now, in our case the key entity will be the dataset. ROOT stores data in data structures known as <b>Trees</b>. There can be many ROOT trees in any given file. A tree is made up of several <b>branches</b>. Think of a branch as a feature in the usual machine-learning slang. In our case we have several hundreds of these. Each branch has a name that corresponds to the feature it represents. For instance we'll have a branch named "Electron_pt" that will host the electron's transverse momentum.
@@ -235,6 +245,7 @@ and the plot:
   <img src="c1.png">
 </p>
 
+The peak sits around $91.18$ GeV which is the Z boson mass.
 
 
 
